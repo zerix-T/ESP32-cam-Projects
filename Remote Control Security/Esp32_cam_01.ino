@@ -344,10 +344,10 @@ void handleNewMessages(int numNewMessages){
     }
    
     if (text == "/start"){
-      String welcome = "Welcome to the ESP32-CAM Telegram bot.\n";
-      welcome += "/photo : takes a new photo\n";
-      welcome += "/flash : toggle flash LED\n";
-      welcome += "You'll receive a photo whenever object is detected.\n";
+      String welcome = "You are welcome to this esp32 Bot.\n";
+      welcome += "/photo : to get the picture now\n";
+      welcome += "/flash : turn the flash LED\n";
+      welcome += "You'll receive a photo whenever an object is detected.\n";
       bot.sendMessage(chatId, welcome, "Markdown");
     }
   }
