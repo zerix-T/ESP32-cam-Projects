@@ -1,5 +1,7 @@
-// The program uses esp32 cam and ultrasonic sensor . It 
-
+// The program uses esp32 cam and ultrasonic sensor . 
+// It also uses telegram api to provide user control the camera and other actions using their telegram id and bot.
+//Any defined unwanted actions will be detected by distance sensor and immediately, camera will initiated and
+//photos will be taken . The photos taken are stored locally on attached sd card and also sent to the users telegram id.
 
 #include <WiFi.h>
 #include <WiFiClientSecure.h>
@@ -18,14 +20,14 @@ using namespace std;
 
 
 // My network credentials
-const char* ssid = "Manish";
-const char* password = "password06";
+const char* ssid = "my_ssid"; //replace this with your network ssid
+const char* password = "my_password"; //replace this with your network password
 
 // my telegram chat userID
-String chatId = "1068770797";
+String chatId = "1234567890";
 
 // Initializing telegram BOT with my token
-String BOTtoken = "5179073368:AAEsNBJDK0ce1ixubZlCEzyAKFAt-IfbE_s";
+String BOTtoken = "123456:ABC-DEF1234ghIkl-zyx57W2v1u123ew11"; //replace it with your telgram token
 
 bool sendPhoto = false;
 
@@ -134,7 +136,7 @@ void setup(){
   }
 
   //checking sd card 
- /*  if(!SD_MMC.begin()){
+  if(!SD_MMC.begin()){
     Serial.println("SD Card Mount Failed");
     return;
   }
@@ -143,7 +145,7 @@ void setup(){
   if(cardType == CARD_NONE){
     Serial.println("No SD Card attached");
     return;
-  }*/
+  }
 
   // Drop down frame size for higher initial frame rate
   sensor_t * s = esp_camera_sensor_get();
@@ -212,7 +214,7 @@ String sendPhotoTelegram(long dist){
     return "Camera capture failed";
   }
 
- /* //For local storage
+  //For local storage
   // initialize EEPROM 
   EEPROM.begin(EEPROM_SIZE);
 
@@ -244,7 +246,7 @@ String sendPhotoTelegram(long dist){
     EEPROM.write(0, 1);
     EEPROM.commit();
   }
-  file.close();*/
+  file.close();
 
   //Send to user telegram bot 
   
